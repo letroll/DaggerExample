@@ -28,10 +28,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.antonioleiva.daggerexample.app.AppComponent;
 import com.antonioleiva.daggerexample.app.R;
 import com.antonioleiva.daggerexample.app.ui.common.BaseActivity;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,16 +43,21 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView.
     private ProgressBar progressBar;
 
     @Override
+    protected void setupComponent(AppComponent appComponent) {
+        Dagger_MainComponent.builder()
+                .appComponent(appComponent)
+                .mainModule(new MainModule(this))
+                .build()
+                .inject(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listView = (ListView) findViewById(R.id.list);
         listView.setOnItemClickListener(this);
         progressBar = (ProgressBar) findViewById(R.id.progress);
-    }
-
-    @Override protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MainModule(this));
     }
 
     @Override protected void onResume() {

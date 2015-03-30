@@ -26,12 +26,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.antonioleiva.daggerexample.app.AppComponent;
 import com.antonioleiva.daggerexample.app.R;
 import com.antonioleiva.daggerexample.app.ui.common.BaseActivity;
 import com.antonioleiva.daggerexample.app.ui.main.MainActivity;
-
-import java.util.Arrays;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -44,18 +42,22 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     private EditText password;
 
     @Override
+    protected void setupComponent(AppComponent appComponent) {
+        Dagger_LoginComponent.builder()
+                .appComponent(appComponent)
+                .loginModule(new LoginModule(this))
+                .build()
+                .inject(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         progressBar = (ProgressBar) findViewById(R.id.progress);
         username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
         findViewById(R.id.button).setOnClickListener(this);
-    }
-
-    @Override protected List<Object> getModules() {
-        return Arrays.<Object>asList(new LoginModule(this));
     }
 
     @Override public void showProgress() {
