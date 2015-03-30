@@ -8,3 +8,7 @@ Android project using Dagger library. This code was created to support this set 
 [Dependency injection using Dagger (Part 2) @ antonioleiva.com](http://antonioleiva.com/dagger-android-part-2/)
 
 [Dependency injection using Dagger (Part 3) @ antonioleiva.com](http://antonioleiva.com/dagger-3/)
+
+### Dagger 2
+
+[Migration process from Dagger 1 to Dagger 2 @ frogermcs.github.io](http://frogermcs.github.io/dagger-1-to-2-migration/)
