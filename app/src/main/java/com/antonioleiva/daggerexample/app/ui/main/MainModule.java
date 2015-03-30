@@ -20,18 +20,12 @@
 
 package com.antonioleiva.daggerexample.app.ui.main;
 
-import com.antonioleiva.daggerexample.app.AppModule;
 import com.antonioleiva.daggerexample.app.interactors.FindItemsInteractor;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        injects = MainActivity.class,
-        addsTo = AppModule.class
-)
+@Module
 public class MainModule {
 
     private MainView view;
@@ -40,11 +34,12 @@ public class MainModule {
         this.view = view;
     }
 
-    @Provides @Singleton public MainView provideView() {
+    @Provides
+    public MainView provideView() {
         return view;
     }
 
-    @Provides @Singleton
+    @Provides
     public MainPresenter providePresenter(MainView mainView, FindItemsInteractor findItemsInteractor) {
         return new MainPresenterImpl(mainView, findItemsInteractor);
     }

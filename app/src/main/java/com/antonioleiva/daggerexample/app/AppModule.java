@@ -22,21 +22,12 @@ package com.antonioleiva.daggerexample.app;
 
 import android.app.Application;
 
-import com.antonioleiva.daggerexample.app.domain.DomainModule;
-import com.antonioleiva.daggerexample.app.interactors.InteractorsModule;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        injects = {
-                App.class
-        },
-        includes = {
-                DomainModule.class,
-                InteractorsModule.class
-        }
-)
+@Module
 public class AppModule {
 
     private App app;
@@ -45,7 +36,9 @@ public class AppModule {
         this.app = app;
     }
 
-    @Provides public Application provideApplication() {
+    @Provides
+    @Singleton
+    public Application provideApplication() {
         return app;
     }
 }

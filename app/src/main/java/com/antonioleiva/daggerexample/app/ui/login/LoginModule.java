@@ -20,18 +20,12 @@
 
 package com.antonioleiva.daggerexample.app.ui.login;
 
-import com.antonioleiva.daggerexample.app.AppModule;
 import com.antonioleiva.daggerexample.app.interactors.LoginInteractor;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 
-@Module(
-        injects = LoginActivity.class,
-        addsTo = AppModule.class
-)
+@Module
 public class LoginModule {
 
     private LoginView view;
@@ -40,11 +34,12 @@ public class LoginModule {
         this.view = view;
     }
 
-    @Provides @Singleton public LoginView provideView() {
+    @Provides
+    public LoginView provideView() {
         return view;
     }
 
-    @Provides @Singleton
+    @Provides
     public LoginPresenter providePresenter(LoginView loginView, LoginInteractor loginInteractor) {
         return new LoginPresenterImpl(loginView, loginInteractor);
     }
