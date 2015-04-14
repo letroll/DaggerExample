@@ -44,7 +44,7 @@ public class App extends Application {
     }
 
     private void setupGraph() {
-        component = Dagger_AppComponent.builder()
+        component = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
         component.inject(this);

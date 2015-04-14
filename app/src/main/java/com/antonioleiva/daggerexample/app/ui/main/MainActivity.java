@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView.
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
-        Dagger_MainComponent.builder()
+        DaggerMainComponent.builder()
                 .appComponent(appComponent)
                 .mainModule(new MainModule(this))
                 .build()
