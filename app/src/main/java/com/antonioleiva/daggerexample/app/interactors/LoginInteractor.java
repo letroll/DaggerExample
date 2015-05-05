@@ -23,5 +23,5 @@ package com.antonioleiva.daggerexample.app.interactors;
 import com.antonioleiva.daggerexample.app.ui.login.OnLoginFinishedListener;
 
 public interface LoginInteractor {
-    public void login(String username, String password, OnLoginFinishedListener listener);
+    void login(String username, String password, OnLoginFinishedListener listener);
 }

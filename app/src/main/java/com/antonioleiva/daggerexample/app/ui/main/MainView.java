@@ -23,12 +23,11 @@ package com.antonioleiva.daggerexample.app.ui.main;
 import java.util.List;
 
 public interface MainView {
+    void showProgress();
 
-    public void showProgress();
+    void hideProgress();
 
-    public void hideProgress();
+    void setItems(List<String> items);
 
-    public void setItems(List<String> items);
-
-    public void showMessage(String message);
+    void showMessage(String message);
 }

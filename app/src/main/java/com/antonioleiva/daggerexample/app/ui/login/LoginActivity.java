@@ -25,21 +25,27 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.antonioleiva.daggerexample.app.AppComponent;
 import com.antonioleiva.daggerexample.app.R;
 import com.antonioleiva.daggerexample.app.ui.common.BaseActivity;
 import com.antonioleiva.daggerexample.app.ui.main.MainActivity;
+import com.antonioleiva.daggerexample.app.ui.vehicule.Vehicle;
 
 import javax.inject.Inject;
 
 public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener {
 
-    @Inject LoginPresenter presenter;
+    @Inject
+    LoginPresenter presenter;
+
+    @Inject
+    Vehicle vehicle;
 
     private ProgressBar progressBar;
-    private EditText username;
-    private EditText password;
+    private EditText    username;
+    private EditText    password;
 
     @Override
     protected void setupComponent(AppComponent appComponent) {
@@ -48,6 +54,10 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
                 .loginModule(new LoginModule(this))
                 .build()
                 .inject(this);
+
+//        DaggerVehicleComponent.builder().appComponent(appComponent).vehicleModule(new VehicleModule()).build();
+
+        Toast.makeText(this, "speed:" + String.valueOf(vehicle.getSpeed()), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -60,28 +70,34 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         findViewById(R.id.button).setOnClickListener(this);
     }
 
-    @Override public void showProgress() {
+    @Override
+    public void showProgress() {
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    @Override public void hideProgress() {
+    @Override
+    public void hideProgress() {
         progressBar.setVisibility(View.GONE);
     }
 
-    @Override public void setUsernameError() {
+    @Override
+    public void setUsernameError() {
         username.setError(getString(R.string.username_error));
     }
 
-    @Override public void setPasswordError() {
+    @Override
+    public void setPasswordError() {
         password.setError(getString(R.string.password_error));
     }
 
-    @Override public void navigateToHome() {
+    @Override
+    public void navigateToHome() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
-    @Override public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
         presenter.validateCredentials(username.getText().toString(), password.getText().toString());
     }
 }

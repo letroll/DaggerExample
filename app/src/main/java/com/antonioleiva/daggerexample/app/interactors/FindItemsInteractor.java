@@ -24,5 +24,5 @@ import com.antonioleiva.daggerexample.app.ui.main.OnFinishedListener;
 
 public interface FindItemsInteractor {
 
-    public void findItems(OnFinishedListener listener);
+    void findItems(OnFinishedListener listener);
 }

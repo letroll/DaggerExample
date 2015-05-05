@@ -21,8 +21,7 @@
 package com.antonioleiva.daggerexample.app.ui.main;
 
 public interface MainPresenter {
+    void onResume();
 
-    public void onResume();
-
-    public void onItemClicked(int position);
+    void onItemClicked(int position);
 }

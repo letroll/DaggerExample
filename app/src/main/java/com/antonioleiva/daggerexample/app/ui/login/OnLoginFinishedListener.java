@@ -22,9 +22,9 @@ package com.antonioleiva.daggerexample.app.ui.login;
 
 public interface OnLoginFinishedListener {
 
-    public void onUsernameError();
+    void onUsernameError();
 
-    public void onPasswordError();
+    void onPasswordError();
 
-    public void onSuccess();
+    void onSuccess();
 }

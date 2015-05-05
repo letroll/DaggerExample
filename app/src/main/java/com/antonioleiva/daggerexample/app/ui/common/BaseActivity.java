@@ -31,7 +31,7 @@ public abstract class BaseActivity extends Activity {
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupComponent((AppComponent) App.get(this).component());
+        setupComponent(App.get(this).component());
     }
 
     protected abstract void setupComponent(AppComponent appComponent);
